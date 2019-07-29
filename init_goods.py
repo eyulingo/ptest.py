@@ -21,7 +21,7 @@ headers = {'Content-Type': 'application/json'}
 s = requests.session()
 login_uri = "http://47.103.15.32:8082/store/login"
 login_params = {
-    'distName': '尚晴',
+    'username': '尚晴',
     'password': 'Shangqing123456'
 }
 r = s.post(login_uri, data=login_params)
@@ -42,7 +42,7 @@ while counter < goods_count_limit:
         'coupon_price': str(randint(10, 40)) + '.00',
         'storage': randint(1000, 9999),
         'description': '没办法写出任何简介',
-        'image_id': '5d25569d6344590006015f02'
+        'image_id': ''
     }
     r = s.post(add_goods_uri, headers=headers, data=json.dumps(add_params))
     if r.json()['status'] == 'ok':
