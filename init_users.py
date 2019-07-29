@@ -12,12 +12,11 @@ s = requests.session()
 
 count_limit = 1000
 
-counter = 0
-
 csv_string = ""
 
 headers = {'Content-Type': 'application/json'}
 
+counter = 0
 while counter < count_limit:
     username = names.get_first_name(gender='female')
 
@@ -40,7 +39,7 @@ while counter < count_limit:
     if r.json()['status'] == 'ok':
         print("  Successfully created user #%d: %s" % (counter, username))
     else:
-        print("!! Failed to created user #%d. Error Code: %s" % (counter, r.json()['status']))
+        print("! Failed to created user #%s. Error Code: %s" % (username, r.json()['status']))
         print("\tDetailed Status: %s" % r.content.decode())
     counter += 1
 
