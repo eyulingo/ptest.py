@@ -18,15 +18,14 @@ headers = {'Content-Type': 'application/json'}
 
 counter = 0
 while counter < count_limit:
-    username = names.get_first_name(gender='female')
+    username = names.get_first_name(gender='female') + str(random.randint(100, 999))
 
     if len(username) < 7:
         continue
     password = username.replace(' ', '') + str(random.randint(1000, 9999))
 
     email = str(random.randint(800000, 10000000)) + "@qq.com"
-    csv_string += (username + "," + password + "\n")
-
+    
     params = {
         'email': email,
         'username': username,
@@ -38,6 +37,7 @@ while counter < count_limit:
 
     if r.json()['status'] == 'ok':
         print("  Successfully created user #%d: %s" % (counter, username))
+        csv_string += (username + "," + password + "\n")
     else:
         print("! Failed to created user #%s. Error Code: %s" % (username, r.json()['status']))
         print("\tDetailed Status: %s" % r.content.decode())
