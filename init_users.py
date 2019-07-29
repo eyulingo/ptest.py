@@ -42,3 +42,7 @@ while counter < count_limit:
     else:
         print("!! Failed to created user #%d. Error Code: %s" % (counter, r.json()['status']))
         print("\tDetailed Status: %s" % r.content.decode())
+    counter += 1
+
+with open('generated.users.csv', 'w') as f:
+    f.write(csv_string)
